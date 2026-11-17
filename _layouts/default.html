@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+<meta name="description" content="{{ site.description }}">
+<link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"><i class="circle"></i><i class="square"></i><i class="triangle"></i></div>
+<main>
+<div class="grid nav3">
+  <header class="tile red full hero">
+    <div class="marks" aria-hidden="true"><i class="g sq"></i><i class="g ci"></i><i class="g tr"></i></div>
+    <p class="label">Support and legal</p>
+    <p class="display"><a href="{{ '/' | relative_url }}" style="color:inherit;text-decoration:none">Sysmus</a></p>
+    <p>The weekly planner built around your class schedule.</p>
+  </header>
+  <a class="tile row" href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}><i class="g tr" aria-hidden="true"></i><span class="row-title">Support<span class="row-sub">Help and contact</span></span><svg class="chev" viewBox="0 0 10 16" aria-hidden="true"><path d="M2 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  <a class="tile row" href="{{ '/privacy/' | relative_url }}"{% if page.url == '/privacy/' %} aria-current="page"{% endif %}><i class="g sq" aria-hidden="true"></i><span class="row-title">Privacy<span class="row-sub">What stays on your iPhone</span></span><svg class="chev" viewBox="0 0 10 16" aria-hidden="true"><path d="M2 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  <a class="tile row" href="{{ '/terms/' | relative_url }}"{% if page.url == '/terms/' %} aria-current="page"{% endif %}><i class="g ci" aria-hidden="true"></i><span class="row-title">Terms<span class="row-sub">Subscriptions and use</span></span><svg class="chev" viewBox="0 0 10 16" aria-hidden="true"><path d="M2 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+</div>
+
+<section class="tile doc">
+<p class="label {{ page.tint }}"><i class="g {{ page.glyph }}" aria-hidden="true"></i>{{ page.label }}</p>
+{{ content }}
+</section>
+
+<footer><span>&copy; {{ site.time | date: '%Y' }} Sysmus</span><a href="#">Back to top</a></footer>
+</main>
+</body>
+</html>
