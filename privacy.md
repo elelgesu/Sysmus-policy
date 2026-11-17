@@ -133,4 +133,4 @@ significant changes, tell you in the app.
 
 ## Contact
 
-Sysmus, [CONTACT EMAIL]
+sysmus4@gmail.com
