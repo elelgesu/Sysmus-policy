@@ -11,16 +11,13 @@
 <body>
 <div class="backdrop" aria-hidden="true"><i class="circle"></i><i class="square"></i><i class="triangle"></i></div>
 <main>
-<div class="grid nav3">
+<div class="grid">
   <header class="tile red full hero">
     <div class="marks" aria-hidden="true"><i class="g sq"></i><i class="g ci"></i><i class="g tr"></i></div>
-    <p class="label">Support and legal</p>
-    <p class="display"><a href="{{ '/' | relative_url }}" style="color:inherit;text-decoration:none">Sysmus</a></p>
+    <p class="label">Privacy policy</p>
+    <p class="display">Sysmus</p>
     <p>The weekly planner built around your class schedule.</p>
   </header>
-  <a class="tile row" href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}><i class="g tr" aria-hidden="true"></i><span class="row-title">Support<span class="row-sub">Help and contact</span></span><svg class="chev" viewBox="0 0 10 16" aria-hidden="true"><path d="M2 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-  <a class="tile row" href="{{ '/privacy/' | relative_url }}"{% if page.url == '/privacy/' %} aria-current="page"{% endif %}><i class="g sq" aria-hidden="true"></i><span class="row-title">Privacy<span class="row-sub">What stays on your iPhone</span></span><svg class="chev" viewBox="0 0 10 16" aria-hidden="true"><path d="M2 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-  <a class="tile row" href="{{ '/terms/' | relative_url }}"{% if page.url == '/terms/' %} aria-current="page"{% endif %}><i class="g ci" aria-hidden="true"></i><span class="row-title">Terms<span class="row-sub">Subscriptions and use</span></span><svg class="chev" viewBox="0 0 10 16" aria-hidden="true"><path d="M2 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 </div>
 
 <section class="tile doc">
