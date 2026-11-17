@@ -1,0 +1,139 @@
+/* Sysmus site theme. Colors mirror the app's Tokens.xcassets. */
+:root {
+  --paper: #F2EFE6; --surface: #FBFAF6; --ink: #111111; --secondary: #5C5850;
+  --red: #C4271B; --blue: #1F4FA8; --yellow: #F2B705;
+  --on-red: #FFFFFF; --on-blue: #FFFFFF; --on-yellow: #111111;
+  --red-text: #B0251A; --blue-text: #1D4A9E; --yellow-text: #7D5A00;
+  --glass: rgba(251, 250, 246, 0.62); --glass-edge: rgba(255, 255, 255, 0.75);
+  --hairline: rgba(17, 17, 17, 0.14); --fill: rgba(17, 17, 17, 0.05);
+  --backdrop: 0.6; --border: 1px;
+  --radius-card: 22px; --radius-control: 12px; --radius-small: 6px;
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 8px 24px rgba(17, 17, 17, 0.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #151412; --surface: #23221F; --ink: #F2EFE6; --secondary: #B3AEA2;
+    --red-text: #FF8A7E; --blue-text: #9DB9FF; --yellow-text: #F5C842;
+    --glass: rgba(35, 34, 31, 0.6); --glass-edge: rgba(255, 255, 255, 0.12);
+    --hairline: rgba(242, 239, 230, 0.16); --fill: rgba(242, 239, 230, 0.07);
+    --backdrop: 0.45;
+    --shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+}
+@media (prefers-contrast: more) {
+  :root { --red: #A81F14; --blue: #173F8A; --secondary: #46433D; --red-text: #961E15;
+    --blue-text: #163C82; --yellow-text: #634700; --border: 2px; --hairline: rgba(17, 17, 17, 0.45); }
+}
+@media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+  :root { --secondary: #CCC7BC; --red-text: #FFA79E; --blue-text: #B8CCFF; --yellow-text: #FFD866;
+    --hairline: rgba(242, 239, 230, 0.5); }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; min-height: 100vh; background: var(--paper); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px; line-height: 1.5; overflow-x: hidden;
+}
+
+/* The Bauhaus backdrop behind the glass (BauhausBackdrop in Card.swift). */
+.backdrop { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.backdrop i { position: absolute; display: block; }
+.backdrop .circle { width: min(90vw, 760px); aspect-ratio: 1; border-radius: 50%;
+  background: var(--red); opacity: var(--backdrop); right: calc(min(90vw, 760px) * -0.45); top: -12vh; }
+.backdrop .square { width: min(70vw, 560px); aspect-ratio: 1; background: var(--blue);
+  opacity: calc(var(--backdrop) * 0.8); left: calc(min(70vw, 560px) * -0.5); top: 40vh; transform: rotate(14deg); }
+.backdrop .triangle { width: min(80vw, 640px); aspect-ratio: 1; background: var(--yellow); opacity: var(--backdrop);
+  right: calc(min(80vw, 640px) * -0.25); bottom: -30vh; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+
+main { max-width: 720px; margin: 0 auto;
+  padding: max(24px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) 64px max(16px, env(safe-area-inset-left)); }
+
+/* Bento grid: full and half tiles, 12 pt gutters. */
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.full { grid-column: 1 / -1; }
+@media (max-width: 420px) { .grid { grid-template-columns: 1fr; } }
+
+/* A tile is glass; filled tiles are glass tinted with their color. */
+.tile { position: relative; border-radius: var(--radius-card); padding: 20px;
+  background: var(--glass); border: var(--border) solid var(--glass-edge); box-shadow: var(--shadow);
+  -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%); }
+.tile.red { background: color-mix(in srgb, var(--red) 92%, transparent); color: var(--on-red); border-color: rgba(255,255,255,0.25); }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .tile { background: var(--surface); } }
+@media (prefers-reduced-transparency: reduce) {
+  .tile { background: var(--surface); -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .tile.red { background: var(--red); }
+}
+
+/* Type: heavy expanded titles, short bold uppercase labels. */
+.display, h2, .row-title { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+  font-stretch: expanded; font-weight: 800; letter-spacing: -0.01em; }
+.label { display: flex; align-items: center; gap: 8px; margin: 0 0 12px; font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.07em; color: var(--secondary); }
+.red .label { color: var(--on-red); }
+.label.blue { color: var(--blue-text); } .label.redt { color: var(--red-text); } .label.yellow { color: var(--yellow-text); }
+
+/* Category glyphs: square, circle, triangle. */
+.g { display: inline-block; width: 12px; height: 12px; flex: none; }
+.g.sq { background: var(--blue); }
+.g.ci { background: var(--red); border-radius: 50%; }
+.g.tr { background: var(--yellow); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.red .g { background: var(--on-red); }
+
+.hero .display { font-size: clamp(40px, 11vw, 64px); line-height: 1; margin: 4px 0 12px; text-transform: uppercase; letter-spacing: 0.01em; }
+.hero p { margin: 0 0 20px; font-size: 19px; font-weight: 600; max-width: 30ch; }
+.hero .marks { position: absolute; top: 20px; right: 20px; display: flex; gap: 6px; }
+.hero .marks .g { width: 18px; height: 18px; background: var(--on-red); opacity: 0.9; }
+
+/* Primary: an Ink capsule, drawn in reverse on a filled tile. */
+.capsule { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 24px;
+  border-radius: 999px; background: var(--ink); color: var(--paper); font-weight: 700; font-size: 17px;
+  text-decoration: none; }
+.red .capsule { background: var(--on-red); color: var(--red); }
+.capsule:hover { filter: brightness(1.08); }
+
+/* Secondary: a tinted rounded row with a chevron. */
+.row { display: flex; align-items: center; gap: 12px; min-height: 44px; height: 100%; padding: 16px;
+  color: var(--ink); text-decoration: none; }
+.row .row-title { font-size: 19px; line-height: 1.2; }
+.row .row-sub { display: block; font-size: 14px; color: var(--secondary); font-weight: 400; font-stretch: normal; margin-top: 2px; }
+.row .chev { margin-left: auto; width: 10px; height: 16px; flex: none; color: var(--secondary); }
+a.tile.row:hover { background: color-mix(in srgb, var(--glass) 70%, var(--ink) 6%); }
+
+a { color: var(--blue-text); text-underline-offset: 2px; }
+.red a { color: var(--on-red); }
+:focus-visible { outline: 3px solid var(--blue-text); outline-offset: 3px; border-radius: var(--radius-small); }
+
+/* Documents. */
+section.tile { margin-top: 12px; padding: 24px 20px; scroll-margin-top: 16px; }
+h2 { font-size: clamp(26px, 6vw, 32px); line-height: 1.1; margin: 0 0 8px; }
+h3 { font-size: 19px; font-weight: 700; margin: 28px 0 8px; padding-top: 20px; border-top: var(--border) solid var(--hairline); }
+p, li { max-width: 68ch; }
+ul { padding-left: 20px; } li { margin: 6px 0; } li::marker { color: var(--secondary); }
+strong { font-weight: 700; }
+code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 15px; background: var(--fill); padding: 1px 5px; border-radius: var(--radius-small); }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { padding: 10px 12px; text-align: left; vertical-align: top; border-bottom: var(--border) solid var(--hairline); }
+tr:last-child td { border-bottom: 0; }
+th { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--secondary); background: var(--fill); }
+td:first-child { font-weight: 600; min-width: 9em; }
+.todo { background: var(--yellow); color: var(--on-yellow); padding: 0 4px; border-radius: 4px; }
+footer { margin-top: 24px; padding: 0 4px; color: var(--secondary); font-size: 14px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+footer a { color: var(--secondary); }
+
+/* Pages: the Markdown title is the h1 inside the content tile. */
+.hero { padding-bottom: 24px; }
+.hero .display { font-size: clamp(36px, 10vw, 56px); }
+.hero p:last-child { margin-bottom: 0; }
+.nav3 { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 560px) { .nav3 { grid-template-columns: 1fr; } }
+a.tile.row[aria-current="page"] { outline: 2px solid var(--ink); outline-offset: -2px; }
+.doc h1 { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+  font-stretch: expanded; font-weight: 800; font-size: clamp(26px, 6vw, 32px); line-height: 1.1; margin: 0 0 8px; }
+.doc h1 + p { color: var(--secondary); font-size: 15px; margin-top: 0; }
+.doc h2 { font-size: 19px; font-weight: 700; font-stretch: normal; letter-spacing: 0; margin: 28px 0 8px; padding-top: 20px;
+  border-top: var(--border) solid var(--hairline); }
+.doc table { display: block; overflow-x: auto; margin: 16px 0; border-radius: var(--radius-control); border: var(--border) solid var(--hairline); }
+
