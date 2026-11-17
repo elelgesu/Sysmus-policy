@@ -3,7 +3,7 @@ title: Privacy Policy
 label: Privacy policy
 glyph: sq
 tint: blue
-permalink: /privacy/
+permalink: /
 ---
 
 # Sysmus Privacy Policy
